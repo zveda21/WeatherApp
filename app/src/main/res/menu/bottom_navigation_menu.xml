@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/weather"
+        android:enabled="true"
+        android:icon="@drawable/sun_unchecked"
+        android:title="@string/weather" />
+    <item
+        android:id="@+id/forecast"
+        android:enabled="true"
+        android:icon="@drawable/forecast_unchecked"
+        android:title="@string/forecast" />
+    <item
+        android:id="@+id/settings"
+        android:enabled="true"
+        android:icon="@drawable/settings_unchecked"
+        android:title="@string/settings" />
+</menu>
