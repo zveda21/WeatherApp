@@ -1,51 +1,63 @@
 package com.example.fragmnttutorialcodes.weather
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.location.Geocoder
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import com.example.fragmnttutorialcodes.ActivityListenerOnWeatherFragment
 import com.example.fragmnttutorialcodes.R
 import com.example.fragmnttutorialcodes.bases.BaseFragment
 import com.example.fragmnttutorialcodes.models.CurrentLocationWeather
-import java.util.*
 
-class WeatherHomeFragment : BaseFragment() {
-    private lateinit  var currentWeather : CurrentLocationWeather
-    private lateinit var currentLocation :TextView
-    private  lateinit var locationManager: LocationManager
-    private lateinit var toolBar : Toolbar
-    private lateinit var  cityName : String
+
+class WeatherHomeFragment : BaseFragment(), ActivityListenerOnWeatherFragment {
+    private lateinit var currentWeather: CurrentLocationWeather
+    private lateinit var currentLocation: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       val view = inflater.inflate(R.layout.fragment_weather_home, container, false)
-
-//        val cityName = this.arguments?.getString("CityName")
-//        if (cityName != null) {
-//            Log.e("Bundle CityName ", cityName)
-//        }
-
+        val view = inflater.inflate(R.layout.fragment_weather_home, container, false)
         currentLocation = view.findViewById(R.id.todayWeather)
- //       currentLocation.text = cityName
+        //       currentLocation.text = cityName
         return view
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    companion object{
-        fun newInstance() = WeatherHomeFragment()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        arguments.let {
+//            val long = it?.getDouble("Longitude")
+//            val lat = it?.getDouble("Latitude")
+//            Log.e("Bundle long ", long.toString())
+//            Log.e("Bundle lat ", lat.toString())
+//        }
+    }
+
+
+    companion object {
+        fun newInstance(/*longitude: Double, latitude: Double*/) = WeatherHomeFragment()
+//            .apply {
+//            arguments.let {
+//                it?.putDouble("Longitude", longitude)
+//                it?.putDouble("Latitude", latitude)
+//            }
+//            return this
+    }
+
+    //    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        (context as MainActivity).setListenerOnWeatherFragment(this)
+//    }
+    override fun aboutReceivedCoordinateListener(long: Double, lat: Double) {
+        //  currentLocation.text =long.toString()
+        Log.e("Interface long ", long.toString())
+        Log.e("Interface lat ", lat.toString())
     }
 }
